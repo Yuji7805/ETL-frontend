@@ -1,0 +1,23 @@
+<div class="modal-overlay">
+  <div class="newFormModal">
+    <h3>Open an existing form</h3>
+    <h4>Select a form</h4>
+
+    <ejs-treeview
+      id="treeelement"
+      [fields]="field"
+      [allowMultiSelection]="false"
+      (nodeSelected)="onNodeSelected($event)"
+    ></ejs-treeview>
+    <mat-dialog-actions class="btnGroup">
+      <button mat-raised-button mat-dialog-close>Cancel</button>
+      <button
+        mat-raised-button
+        [mat-dialog-close]="selectedNodeName"
+        color="primary"
+      >
+        Open
+      </button>
+    </mat-dialog-actions>
+  </div>
+</div>

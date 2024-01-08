@@ -1,0 +1,20 @@
+<p>new-input-module-dialog works!</p>
+<div class="modal-overlay">
+  <div class="newFormModal">
+    <h3>NEW INPUT MODULE</h3>
+    <h4>Select a Databox</h4>
+    <p class="databox">INV - Invoices</p>
+    <ejs-treeview
+      id="treeelement"
+      [fields]="field"
+      [allowMultiSelection]="false"
+      (nodeSelected)="onNodeSelected($event)"
+    ></ejs-treeview>
+    <mat-dialog-actions class="btnGroup">
+      <button mat-raised-button mat-dialog-close>Cancel</button>
+      <button mat-raised-button [mat-dialog-close]="{selectedNodeName}" color="primary">
+        Save
+      </button>
+    </mat-dialog-actions>
+  </div>
+</div>

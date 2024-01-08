@@ -1,0 +1,77 @@
+# this is an auto generated file. This will be overwritten
+
+query GetControlObject($tenantId: String!, $code: String!) {
+  getControlObject(tenantId: $tenantId, code: $code) {
+    tenantId
+    code
+    description
+    fields {
+      code
+      description
+      key
+      type
+      __typename
+    }
+    image
+    labels
+    __typename
+  }
+}
+
+query GetControlObjectLabel($tenantId: String!, $code: String!) {
+  getControlObjectLabel(tenantId: $tenantId, code: $code) {
+    tenantId
+    code
+    description
+    color
+    __typename
+  }
+}
+
+query ListControlObjects(
+  $filter: TableTenantFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  listControlObjects(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    items {
+      tenantId
+      code
+      description
+      fields {
+        code
+        description
+        key
+        type
+        __typename
+      }
+      image
+      labels
+      __typename
+    }
+    nextToken
+    __typename
+  }
+}
+
+query ListControlObjectLabel(
+  $filter: TableTenantFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  listControlObjectLabel(
+    filter: $filter
+    limit: $limit
+    nextToken: $nextToken
+  ) {
+    items {
+      tenantId
+      code
+      description
+      color
+      __typename
+    }
+    nextToken
+    __typename
+  }
+}

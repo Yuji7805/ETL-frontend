@@ -1,0 +1,13 @@
+{
+  "resourceName": "redznake",
+  "policyUUID": "89d6dace",
+  "bucketName": "redznake",
+  "storageAccess": "auth",
+  "guestAccess": [],
+  "authAccess": [
+    "CREATE_AND_UPDATE",
+    "READ",
+    "DELETE"
+  ],
+  "groupAccess": {}
+}

@@ -1,0 +1,32 @@
+<div class="modal-overlay">
+  <div class="newFormModal">
+    <h3>New Form</h3>
+    <mat-dialog-content class="newFormContent">
+      <div class="pInputText">
+        <label>Code</label>
+        <mat-form-field class="full-width">
+          <input matInput #code />
+        </mat-form-field>
+      </div>
+      <div class="pInputText">
+        <label>Description</label>
+        <mat-form-field class="full-width">
+          <input matInput #description />
+        </mat-form-field>
+      </div>
+    </mat-dialog-content>
+    <mat-dialog-actions class="btnGroup">
+      <button mat-raised-button mat-dialog-close>Cancel</button>
+      <button
+        mat-raised-button
+        [mat-dialog-close]="{
+          code: code.value,
+          description: description.value
+        }"
+        color="primary"
+      >
+        Save
+      </button>
+    </mat-dialog-actions>
+  </div>
+</div>

@@ -1,0 +1,24 @@
+<div class="control-section">
+  <div class="sheet-name">{{sheetName}}</div>
+  <ejs-spreadsheet
+    #spreadsheet
+    (created)="created()"
+    (fileMenuBeforeOpen)="fileMenuBeforeOpen()"
+    (fileMenuItemSelect)="fileMenuItemSelect($event)"    
+    [openUrl]="openUrl"
+    [saveUrl]="saveUrl"
+    [showFormulaBar]="true"
+    [showSheetTabs]="false"
+    [allowInsert]="false"
+    [allowDelete]="false"
+    [allowMerge]="false"
+    [allowEditing]="true"
+    (cellSave)="onContentChange($event)"
+  >
+    <e-sheets>
+      <e-sheet>
+        <e-columns> </e-columns>
+      </e-sheet>
+    </e-sheets>
+  </ejs-spreadsheet>
+</div>

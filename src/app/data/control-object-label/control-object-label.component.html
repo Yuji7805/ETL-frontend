@@ -1,0 +1,89 @@
+<p-toast></p-toast>
+<p-table #dt dataKey="id" [value]="labels" [rows]="10" [resizableColumns]="true" columnResizeMode="expand"
+    [reorderableColumns]="true" styleClass="p-datatable-sm" [globalFilterFields]="['label.code', 'label.description']"
+    [rowHover]="true" [scrollable]="true" scrollHeight="flex" [(selection)]="deleteLabels">
+    <ng-template pTemplate="caption">
+        <div class="flex align-items-center justify-content-between">
+            <span>
+                <p-button label="New label" icon="pi pi-plus" class="mr-2" styleClass="p-button-success"
+                    (click)="createNewLabel()"></p-button>
+                <p-button label="Reload" icon="pi pi-refresh" class="mr-2" styleClass="p-button-primary"
+                    (click)="reload()"></p-button>
+            </span>
+            <span class="p-input-icon-left">
+                <i class="pi pi-search"></i>
+                <input pInputText type="text" (input)="dt.filterGlobal($event.target.value, 'contains')"
+                    placeholder="Search..." />
+            </span>
+            <span>
+                <p-button label="Delete selected" icon="pi pi-trash" class="mr-2"
+                    styleClass="p-button-danger p-button-outlined" (click)="deleteSelectedLabels()"
+                    [disabled]="!deleteLabels || !deleteLabels.length"></p-button>
+                <p-button label="Save new and edited" icon="pi pi-save" class="mr-2"
+                    styleClass="p-button-primary p-button-outlined" (click)="saveNewAndEdited()"
+                    [disabled]="!upsertLabels || !upsertLabels.length"></p-button>
+            </span>
+        </div>
+    </ng-template>
+    <ng-template pTemplate="header">
+        <tr>
+            <th style="min-width:3rem"></th>
+            <th style="width: 4rem">
+                <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+            </th>
+            <th pSortableColumn="label.code" style="min-width:15rem">Code <p-sortIcon field="label.code"></p-sortIcon>
+            </th>
+            <th pSortableColumn="label.description" style="min-width:20rem">Description <p-sortIcon
+                    field="label.description"></p-sortIcon></th>
+            <th pSortableColumn="label.color" style="min-width:5rem">Color</th>
+            <th style="min-width:5rem"></th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-label>
+        <tr>
+            <td>
+                <i [ngClass]="label.isNew ? 'pi pi-plus' : (label.isEdit ? 'pi pi-pencil' : '')"></i>
+            </td>
+            <td>
+                <p-tableCheckbox [value]="label" [pSelectableRow]="!label.isNew"></p-tableCheckbox>
+            </td>
+            <td [pEditableColumn]="label.label.code" [pEditableColumnDisabled]="!label.isNew"
+                pEditableColumnField="label.label.code">
+                <p-cellEditor>
+                    <ng-template pTemplate="input">
+                        <input id="code" pInputText type="text" [(ngModel)]="label.label.code" class="w-full"
+                            (change)="itemChange(label)"/>
+                    </ng-template>
+                    <ng-template pTemplate="output">
+                        {{ label.label.code }}
+                    </ng-template>
+                </p-cellEditor>
+            </td>
+            <td [pEditableColumn]="label.label.description" pEditableColumnField="label.label.description">
+                <p-cellEditor>
+                    <ng-template pTemplate="input">
+                        <input id="description" pInputText type="text" [(ngModel)]="label.label.description" class="w-full"
+                            (change)="itemChange(label)"/>
+                    </ng-template>
+                    <ng-template pTemplate="output">
+                        {{ label.label.description }}
+                    </ng-template>
+                </p-cellEditor>
+            </td>
+            <td [style]="{'overflow':'visible'}">
+                <p-colorPicker overlay="true" [(ngModel)]="label.label.color"
+                    (onChange)="itemChange(label)"></p-colorPicker>
+            </td>
+            <td>
+                <p-button icon="pi pi-trash" styleClass="p-button-rounded p-button-outlined p-button-danger"
+                    [disabled]="label.isNew"
+                    (click)="deleteSingleLabel(label)"></p-button>
+            </td>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="summary">
+        <div class="flex align-items-center justify-content-between">In total there are {{ labels ? labels.length : 0 }}
+            labels.</div>
+    </ng-template>
+</p-table>
+<p-confirmDialog [style]="{ width: '450px' }"></p-confirmDialog>

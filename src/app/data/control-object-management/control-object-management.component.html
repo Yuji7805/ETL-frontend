@@ -1,0 +1,88 @@
+<div class="grid card">
+  <div class="col-4" style="text-align: left; padding-top: 1rem;">
+    <h5>Control object</h5>
+  </div>
+  <div class="col-5" style="text-align: left; padding-top: 1rem;">
+    <p-multiSelect [options]="controlObjectLabels" placeholder="Filter by labels"
+      optionLabel="description" display="chip" [showClear]="true" [style]="{'width':'500px'}" [panelStyle]="{'width':'100%'}"
+      (onChange)="filterControlObjectByLabel($event)" (onClear)="filterControlObjectByLabel()">
+      <ng-template let-value pTemplate="selectedItems">
+        <div class="inline-flex align-items-center gap-2 px-1" *ngFor="let option of value">
+          <p-skeleton [style]="{ 'background': option.color}" shape="circle" size="2rem" styleClass="mr-2"></p-skeleton>
+          <div>{{ option.description }}</div>
+        </div>
+        <div *ngIf="!value || value.length === 0">Select labels</div>
+      </ng-template>
+      <ng-template let-label pTemplate="item">
+        <div class="flex align-items-center gap-2">
+          <p-skeleton [style]="{ 'background': label.color}" shape="circle" size="2rem" styleClass="mr-2"></p-skeleton>
+          <div>{{ label.description }}</div>
+        </div>
+      </ng-template>
+    </p-multiSelect>
+    <small id="labels-help" class="block">Filter the Control object by labels.</small>
+  </div>
+  <div class="col-2" style="text-align: right;">
+    <p-button label="Label management" icon="pi pi-tags" class="mr-2" styleClass="p-button"
+      (click)="showControlObjectLabelForm()"></p-button>
+  </div>
+  <div class="col-1" style="text-align: right;">
+    <p-button label="Add element" icon="pi pi-plus" class="mr-2" styleClass="p-button"
+      (click)="showControlObjectForm(undefined, false)"></p-button>
+  </div>
+</div>
+<div class="card widget-store-items" style="min-height: 70vh; max-height: 70vh">
+  <div class="store-cards-container">
+    <div class="grid store-cards">
+      <div class="col-2" *ngFor="let controlObject of controlObjects">
+        <div class="store-card border-round">
+          <div class="store-card-icons">
+            <div class="grid grid-nogutter">
+              <div class="col-3">
+                <p-button icon="pi pi-pencil" pTooltip="Edit description"
+                  styleClass="p-button-rounded p-button-text p-button-lg"
+                  (click)="showControlObjectForm(controlObject, true)"></p-button>
+              </div>
+              <div class="col-3">
+                <p-button icon="pi pi-wrench" pTooltip="Edit structure"
+                  styleClass="p-button-rounded p-button-text p-button-lg"
+                  (click)="showControlObjectFields(controlObject)"></p-button>
+              </div>
+              <div class="col-3">
+                <p-button icon="pi pi-search" pTooltip="Data preview"
+                  styleClass="p-button-rounded p-button-text p-button-lg"
+                  (click)="showControlObjectData(controlObject)"></p-button>
+              </div>
+              <div class="col-3">
+                <p-toast></p-toast>
+                <p-confirmPopup></p-confirmPopup>
+                <p-button icon="pi pi-trash" pTooltip="Delete element"
+                  styleClass="p-button-rounded p-button-text p-button-danger p-button-lg"
+                  (click)="confirmControlObjectDeletion($event, controlObject)"></p-button>
+              </div>
+            </div>
+          </div>
+          <div class="store-card-image border-circle"
+            style="text-align: center; padding-left: 3rem;padding-right: 3rem;padding-top: 1rem">
+            <p-image
+              [src]="controlObject.image == undefined ? 'https://primefaces.org/cdn/primeng/images/galleria/galleria1.jpg' : controlObject.image"
+              alt="https://primefaces.org/cdn/primeng/images/galleria/galleria1.jpg" width="200" height="100" />
+          </div>
+          <div class="store-card-content">
+            <h6 [style]="{'margin':'3px'}">{{controlObject.code}}</h6>
+            <span>{{controlObject.description}}</span>
+          </div>
+          <div [style]="{'text-align':'center', 'padding':'6px', 'border-top': 'solid 1px #d8dee9'}">
+            <div class="grid grid-nogutter">
+              <div *ngFor="let label of controlObject.labels" [style]="{'padding-left': '2px'}">
+                <p-tag [style]="{ 'background': getControlObjectLabelColor(label)}" [value]="label"
+                  [rounded]="true"></p-tag>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="list-effect"></div>
+</div>

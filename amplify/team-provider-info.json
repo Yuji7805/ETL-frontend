@@ -1,0 +1,38 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-redznake-dev-174146-authRole",
+      "UnauthRoleArn": "arn:aws:iam::258159153433:role/amplify-redznake-dev-174146-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::258159153433:role/amplify-redznake-dev-174146-authRole",
+      "Region": "eu-west-1",
+      "DeploymentBucketName": "amplify-redznake-dev-174146-deployment",
+      "UnauthRoleName": "amplify-redznake-dev-174146-unauthRole",
+      "StackName": "amplify-redznake-dev-174146",
+      "StackId": "arn:aws:cloudformation:eu-west-1:258159153433:stack/amplify-redznake-dev-174146/860cfa20-9068-11ee-869d-02e02067fea3",
+      "AmplifyAppId": "d3rgmm3wi53fgb"
+    },
+    "categories": {
+      "auth": {
+        "redznakecf1283df": {
+          "userPoolId": "eu-west-1_bSExPTTDm",
+          "userPoolName": "redznake",
+          "webClientId": "6acb4pvt3524tneibt1nc8u6cb",
+          "nativeClientId": "6acb4pvt3524tneibt1nc8u6cb",
+          "identityPoolId": "eu-west-1:e36f6a74-8ae5-4ddb-bdca-48d6627b881a",
+          "identityPoolName": "redznake-identity-pool",
+          "allowUnauthenticatedIdentities": false,
+          "authRoleArn": "arn:aws:iam::258159153433:role/service-role/redznake-identity-pool",
+          "authRoleName": "redznake-identity-pool",
+          "unauthRoleArn": "arn:aws:iam::258159153433:role/service-role/redznake-identity-pool-unauthenticated",
+          "unauthRoleName": "redznake-identity-pool-unauthenticated"
+        }
+      },
+      "api": {
+        "redznake": {}
+      },
+      "storage": {
+        "redznake": {}
+      }
+    }
+  }
+}

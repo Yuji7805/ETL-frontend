@@ -1,0 +1,85 @@
+# this is an auto generated file. This will be overwritten
+
+mutation CreateControlObject($input: CreateControlObjectInput!) {
+  createControlObject(input: $input) {
+    tenantId
+    code
+    description
+    fields {
+      code
+      description
+      key
+      type
+      __typename
+    }
+    image
+    labels
+    __typename
+  }
+}
+
+mutation UpdateControlObject($input: UpdateControlObjectInput!) {
+  updateControlObject(input: $input) {
+    tenantId
+    code
+    description
+    fields {
+      code
+      description
+      key
+      type
+      __typename
+    }
+    image
+    labels
+    __typename
+  }
+}
+
+mutation DeleteControlObject($input: DeleteControlObjectInput!) {
+  deleteControlObject(input: $input) {
+    tenantId
+    code
+    description
+    fields {
+      code
+      description
+      key
+      type
+      __typename
+    }
+    image
+    labels
+    __typename
+  }
+}
+
+mutation CreateControlObjectLabel($input: CreateControlObjectLabelInput!) {
+  createControlObjectLabel(input: $input) {
+    tenantId
+    code
+    description
+    color
+    __typename
+  }
+}
+
+mutation UpdateControlObjectLabel($input: UpdateControlObjectLabelInput!) {
+  updateControlObjectLabel(input: $input) {
+    tenantId
+    code
+    description
+    color
+    __typename
+  }
+}
+
+mutation DeleteControlObjectLabel($input: DeleteControlObjectLabelInput!) {
+  deleteControlObjectLabel(input: $input) {
+    tenantId
+    code
+    description
+    color
+    __typename
+  }
+}

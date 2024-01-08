@@ -1,0 +1,144 @@
+{
+  "api": {
+    "redznake": {
+      "dependsOn": [
+        {
+          "attributes": [
+            "UserPoolId"
+          ],
+          "category": "auth",
+          "resourceName": "redznakecf1283df"
+        }
+      ],
+      "output": {
+        "authConfig": {
+          "additionalAuthenticationProviders": [
+            {
+              "apiKeyConfig": {
+                "apiKeyExpirationDate": "2023-12-09T08:55:54.946Z",
+                "apiKeyExpirationDays": 7,
+                "description": "redznake-test-apikey"
+              },
+              "authenticationType": "API_KEY"
+            }
+          ],
+          "defaultAuthentication": {
+            "authenticationType": "AMAZON_COGNITO_USER_POOLS",
+            "userPoolConfig": {
+              "userPoolId": "authredznakecf1283df"
+            }
+          }
+        }
+      },
+      "providerPlugin": "awscloudformation",
+      "service": "AppSync"
+    }
+  },
+  "auth": {
+    "redznakecf1283df": {
+      "customAuth": false,
+      "dependsOn": [],
+      "providerPlugin": "awscloudformation",
+      "service": "Cognito",
+      "serviceType": "imported"
+    }
+  },
+  "function": {},
+  "parameters": {
+    "AMPLIFY_auth_redznakecf1283df_allowUnauthenticatedIdentities": {
+      "usedBy": [
+        {
+          "category": "auth",
+          "resourceName": "redznakecf1283df"
+        }
+      ]
+    },
+    "AMPLIFY_auth_redznakecf1283df_authRoleArn": {
+      "usedBy": [
+        {
+          "category": "auth",
+          "resourceName": "redznakecf1283df"
+        }
+      ]
+    },
+    "AMPLIFY_auth_redznakecf1283df_authRoleName": {
+      "usedBy": [
+        {
+          "category": "auth",
+          "resourceName": "redznakecf1283df"
+        }
+      ]
+    },
+    "AMPLIFY_auth_redznakecf1283df_identityPoolId": {
+      "usedBy": [
+        {
+          "category": "auth",
+          "resourceName": "redznakecf1283df"
+        }
+      ]
+    },
+    "AMPLIFY_auth_redznakecf1283df_identityPoolName": {
+      "usedBy": [
+        {
+          "category": "auth",
+          "resourceName": "redznakecf1283df"
+        }
+      ]
+    },
+    "AMPLIFY_auth_redznakecf1283df_nativeClientId": {
+      "usedBy": [
+        {
+          "category": "auth",
+          "resourceName": "redznakecf1283df"
+        }
+      ]
+    },
+    "AMPLIFY_auth_redznakecf1283df_unauthRoleArn": {
+      "usedBy": [
+        {
+          "category": "auth",
+          "resourceName": "redznakecf1283df"
+        }
+      ]
+    },
+    "AMPLIFY_auth_redznakecf1283df_unauthRoleName": {
+      "usedBy": [
+        {
+          "category": "auth",
+          "resourceName": "redznakecf1283df"
+        }
+      ]
+    },
+    "AMPLIFY_auth_redznakecf1283df_userPoolId": {
+      "usedBy": [
+        {
+          "category": "auth",
+          "resourceName": "redznakecf1283df"
+        }
+      ]
+    },
+    "AMPLIFY_auth_redznakecf1283df_userPoolName": {
+      "usedBy": [
+        {
+          "category": "auth",
+          "resourceName": "redznakecf1283df"
+        }
+      ]
+    },
+    "AMPLIFY_auth_redznakecf1283df_webClientId": {
+      "usedBy": [
+        {
+          "category": "auth",
+          "resourceName": "redznakecf1283df"
+        }
+      ]
+    }
+  },
+  "storage": {
+    "redznake": {
+      "dependsOn": [],
+      "providerPlugin": "awscloudformation",
+      "service": "S3"
+    }
+  }
+}

@@ -1,0 +1,57 @@
+<p-toast></p-toast>
+<div class="card">
+    <div class="field">
+        <label for="code" class="block">Code</label>
+        <input id="code" class="w-full" type="username" aria-describedby="code-help" [disabled]="edit ? true : false"
+            pInputText [ngModel]="controlObject?.code"
+            (ngModelChange)="controlObject ? controlObject.code = $event : null" />
+        <small id="code-help" class="block">Enter the Control Object code.</small>
+    </div>
+    <div class="field">
+        <label for="description" class="block">Description</label>
+        <input id="description" class="w-full" type="username" aria-describedby="description" pInputText
+            [ngModel]="controlObject?.description"
+            (ngModelChange)="controlObject ? controlObject.description = $event : null" />
+        <small id="description-help" class="block">Enter the Control Object description.</small>
+    </div>
+    <div class="field">
+        <label for="labels" class="block">Labels</label>
+        <p-multiSelect [options]="controlObjectLabels" [(ngModel)]="selectedControlObjectLabels"
+            placeholder="Select labels" optionLabel="description" display="chip" [showClear]="true" scrollHeight="150px"
+            [style]="{'width':'100%'}" [panelStyle]="{'width':'100%'}">
+            <ng-template let-value pTemplate="selectedItems">
+                <div class="inline-flex align-items-center gap-2 px-1" *ngFor="let option of value">
+                    <p-skeleton [style]="{ 'background': option.color}" shape="circle" size="2rem"
+                        styleClass="mr-2"></p-skeleton>
+                    <div>{{ option.description }}</div>
+                </div>
+                <div *ngIf="!value || value.length === 0">Select labels</div>
+            </ng-template>
+            <ng-template let-label pTemplate="item">
+                <div class="flex align-items-center gap-2">
+                    <p-skeleton [style]="{ 'background': label.color}" shape="circle" size="2rem"
+                        styleClass="mr-2"></p-skeleton>
+                    <div>{{ label.description }}</div>
+                </div>
+            </ng-template>
+        </p-multiSelect>
+        <small id="labels-help" class="block">Choose the Control Object labels.</small>
+    </div>
+    <div class="field">
+        <p-toast></p-toast>
+        <label for="image" class="block">Image</label>
+        <div class="flex align-items-left justify-content-between">
+            <p-fileUpload mode="basic" name="demo" url="https://www.primefaces.org/cdn/api/upload.php" [auto]="true"
+                multiple="false" accept="image/*" maxFileSize="1000000" (onUpload)="onUpload($event)"
+                chooseLabel="Choose" chooseStyleClass="p-button-text"></p-fileUpload>
+            <p-image [src]="filePreview" width="50" height="50" />
+        </div>
+        <small id="image-help" class="block">Choose the Control Object image.</small>
+    </div>
+    <p-divider type="solid"></p-divider>
+    <div class="flex align-items-right justify-content-between">
+        <p-button label="Cancel" icon="pi pi-undo" class="mr-2" styleClass="p-button-primary p-button-outlined"
+            (click)="cancel()"></p-button>
+        <p-button label="Save" icon="pi pi-save" class="mr-2" styleClass="p-button-primary" (click)="save()"></p-button>
+    </div>
+</div>

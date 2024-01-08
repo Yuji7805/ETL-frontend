@@ -1,0 +1,52 @@
+<div class="layout-topbar">
+    <div class="layout-topbar-wrapper">
+        <div class="layout-topbar-left">
+            <div class="layout-topbar-logo-wrapper">
+                <a href="#" class="layout-topbar-logo">
+                    <img src="assets/layout/images/logo-mirage@2x.png" alt="mirage-layout" />
+                    <span class="app-name">RedZnake</span>
+                </a>
+            </div>
+            <a href="#" class="sidebar-menu-button" (click)="appMain.onMenuButtonClick($event)">
+                <i class="pi pi-bars"></i>
+            </a>
+            <a href="#" class="topbar-menu-mobile-button" (click)="appMain.onTopbarMobileMenuButtonClick($event)">
+                <i class="pi pi-ellipsis-v"></i>
+            </a>
+        </div>
+        <div class="layout-topbar-right fadeInDown">
+            <ul class="layout-topbar-actions">
+                <li #profile class="topbar-item profile-item"
+                    [ngClass]="{'active-topmenuitem': appMain.activeTopbarItem === profile}">
+                    <a href="#" (click)="appMain.onTopbarItemClick($event,profile)">
+                        <span class="profile-image-wrapper">
+                            <img src={{profilePicture}} alt="mirage-layout" style="border-radius: 50%;" />
+                        </span>
+                        <span class="profile-info-wrapper">
+                            <h3>{{this.userName}}</h3>
+                        </span>
+                    </a>
+                    <ul class="profile-item-submenu fadeInDown">
+                        <li class="layout-submenu-item" (click)="this.onUserProfileClick()">
+                            <i class="pi pi-user-edit icon icon-3"></i>
+                            <div class="menu-text">
+                                <p>Update profile</p>
+                            </div>
+                        </li>
+                        <li class="layout-submenu-item" (click)="this.onSignOutClick()">
+                            <i class="pi pi-sign-out icon icon-3"></i>
+                            <div class="menu-text">
+                                <p>Sign out</p>
+                            </div>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#" class="layout-rightpanel-button" (click)="appMain.onRightPanelButtonClick($event)">
+                        <i class="pi pi-calendar"></i>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>

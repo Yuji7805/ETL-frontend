@@ -1,0 +1,151 @@
+# this is an auto generated file. This will be overwritten
+
+subscription OnCreateControlObject(
+  $tenantId: String
+  $code: String
+  $description: String
+  $image: String
+  $label: [String]
+) {
+  onCreateControlObject(
+    tenantId: $tenantId
+    code: $code
+    description: $description
+    image: $image
+    label: $label
+  ) {
+    tenantId
+    code
+    description
+    fields {
+      code
+      description
+      key
+      type
+      __typename
+    }
+    image
+    labels
+    __typename
+  }
+}
+
+subscription OnUpdateControlObject(
+  $tenantId: String
+  $code: String
+  $description: String
+  $image: String
+  $label: [String]
+) {
+  onUpdateControlObject(
+    tenantId: $tenantId
+    code: $code
+    description: $description
+    image: $image
+    label: $label
+  ) {
+    tenantId
+    code
+    description
+    fields {
+      code
+      description
+      key
+      type
+      __typename
+    }
+    image
+    labels
+    __typename
+  }
+}
+
+subscription OnDeleteControlObject(
+  $tenantId: String
+  $code: String
+  $description: String
+  $image: String
+  $label: [String]
+) {
+  onDeleteControlObject(
+    tenantId: $tenantId
+    code: $code
+    description: $description
+    image: $image
+    label: $label
+  ) {
+    tenantId
+    code
+    description
+    fields {
+      code
+      description
+      key
+      type
+      __typename
+    }
+    image
+    labels
+    __typename
+  }
+}
+
+subscription OnCreateControlObjectLabel(
+  $tenantId: String
+  $code: String
+  $description: String
+  $color: String
+) {
+  onCreateControlObjectLabel(
+    tenantId: $tenantId
+    code: $code
+    description: $description
+    color: $color
+  ) {
+    tenantId
+    code
+    description
+    color
+    __typename
+  }
+}
+
+subscription OnUpdateControlObjectLabel(
+  $tenantId: String
+  $code: String
+  $description: String
+  $color: String
+) {
+  onUpdateControlObjectLabel(
+    tenantId: $tenantId
+    code: $code
+    description: $description
+    color: $color
+  ) {
+    tenantId
+    code
+    description
+    color
+    __typename
+  }
+}
+
+subscription OnDeleteControlObjectLabel(
+  $tenantId: String
+  $code: String
+  $description: String
+  $color: String
+) {
+  onDeleteControlObjectLabel(
+    tenantId: $tenantId
+    code: $code
+    description: $description
+    color: $color
+  ) {
+    tenantId
+    code
+    description
+    color
+    __typename
+  }
+}

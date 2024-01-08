@@ -1,0 +1,40 @@
+<p-table #dt dataKey="ID" [columns]="controlObjectColumns" [value]="virtualControlObjectData" [rows]="100"
+    [resizableColumns]="true" columnResizeMode="expand" [reorderableColumns]="true"
+    [tableStyle]="{ 'min-width': '75rem' }" styleClass="p-datatable-sm p-datatable-striped"
+    [globalFilterFields]="controlObjectFilterColumns" [rowHover]="true" [scrollable]="true" scrollHeight="60vh"
+    [virtualScroll]="true" [virtualScrollItemSize]="40" [lazy]="true" (onLazyLoad)="loadDataLazy($event)"
+    [totalRecords]="totalRecords" [loading]="loading">
+    <ng-template pTemplate="header" let-columns>
+        <tr>
+            <th *ngFor="let col of columns" pResizableColumn pReorderableColumn pSortableColumn="{{col.code}}"
+                style="min-width:200px">
+                {{ col.description }}
+                <p-sortIcon field="{{col.code}}"></p-sortIcon>
+            </th>
+        </tr>
+        <tr>
+            <th *ngFor="let col of columns">
+                <p-columnFilter type="text" field="{{col.code}}"></p-columnFilter>
+            </th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-rowData let-columns="columns">
+        <tr style="height:40px">
+            <td *ngFor="let col of columns">
+                {{rowData[col.code]}}
+            </td>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="loadingbody" let-columns="columns">
+        <tr style="height:40px">
+            <td *ngFor="let col of columns; let even = even">
+                <p-skeleton [ngStyle]="{'width': '60%'}"></p-skeleton>
+            </td>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="summary">
+        <div class="flex align-items-center justify-content-between">
+            In total there are {{controlObjectData ? controlObjectData.length : 0 }} items.
+        </div>
+    </ng-template>
+</p-table>

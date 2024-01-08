@@ -1,0 +1,96 @@
+<p-toast></p-toast>
+<p-table #dt dataKey="id" [value]="fields" [rows]="10"
+    [resizableColumns]="true" columnResizeMode="expand" [reorderableColumns]="true"
+    [tableStyle]="{ 'min-width': '75rem'}" styleClass="p-datatable-sm"
+    [globalFilterFields]="['code', 'description']" [rowHover]="true" [scrollable]="true" scrollHeight="flex"
+    [(selection)]="selectedFields">
+    <ng-template pTemplate="caption">
+        <div class="flex align-items-center justify-content-between">
+            <span>
+                <p-button label="New field" icon="pi pi-plus" class="mr-2" styleClass="p-button-success"
+                    (click)="createNewField()"></p-button>
+                <p-button label="Delete selected" icon="pi pi-trash" class="mr-2"
+                    styleClass="p-button-danger p-button-outlined" (click)="deleteSelectedFields()"
+                    [disabled]="!selectedFields || !selectedFields.length"></p-button>
+            </span>
+            <span class="p-input-icon-left">
+                <i class="pi pi-search"></i>
+                <input pInputText type="text" (input)="dt.filterGlobal($event.target.value, 'contains')"
+                    placeholder="Search..." />
+            </span>
+            <span>
+                <p-button label="Refresh" icon="pi pi-refresh" class="mr-2"
+                    styleClass="p-button-primary p-button-outlined" (click)="refresh()"></p-button>
+                <p-button label="Cancel" icon="pi pi-undo" class="mr-2"
+                    styleClass="p-button-primary p-button-outlined" (click)="cancel()"></p-button>
+                <p-button label="Save" icon="pi pi-save" class="mr-2" styleClass="p-button-primary"
+                    (click)="save()"></p-button>
+            </span>
+        </div>
+    </ng-template>
+    <ng-template pTemplate="header">
+        <tr>
+            <th style="width: 4rem">
+                <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+            </th>
+            <th pSortableColumn="code" style="min-width:15rem">Code <p-sortIcon field="code"></p-sortIcon></th>
+            <th pSortableColumn="description" style="min-width:25rem">Description <p-sortIcon
+                    field="description"></p-sortIcon></th>
+            <th pSortableColumn="type" style="min-width:10rem">Type <p-sortIcon field="type"></p-sortIcon></th>
+            <th pSortableColumn="key">Key <p-sortIcon field="key"></p-sortIcon></th>
+            <th></th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-field>
+        <tr>
+            <td>
+                <p-tableCheckbox [value]="field"></p-tableCheckbox>
+            </td>
+            <td [pEditableColumn]="field.code" [pEditableColumnDisabled]="!field.isNew" pEditableColumnField="code">
+                <p-cellEditor>
+                    <ng-template pTemplate="input">
+                        <input id="code" pInputText type="text" [(ngModel)]="field.code" class="w-full" />
+                    </ng-template>
+                    <ng-template pTemplate="output">
+                        {{ field.code }}
+                    </ng-template>
+                </p-cellEditor>
+            </td>
+            <td [pEditableColumn]="field.description" pEditableColumnField="description">
+                <p-cellEditor>
+                    <ng-template pTemplate="input">
+                        <input id="description" pInputText type="text" [(ngModel)]="field.description"
+                            class="w-full" />
+                    </ng-template>
+                    <ng-template pTemplate="output">
+                        {{ field.description }}
+                    </ng-template>
+                </p-cellEditor>
+            </td>
+            <td [pEditableColumn]="field.type" [pEditableColumnDisabled]="!field.isNew"
+                pEditableColumnField="type" [style]="{'overflow':'visible'}">
+                <p-cellEditor>
+                    <ng-template pTemplate="input">
+                        <p-dropdown id="type" [options]="types" [(ngModel)]="field.type" showClear="true"
+                            placeholder="Select type" class="w-full"></p-dropdown>
+                    </ng-template>
+                    <ng-template pTemplate="output">
+                        {{ field.type }}
+                    </ng-template>
+                </p-cellEditor>
+            </td>
+            <td>
+                <p-checkbox id="key" [binary]="true" [(ngModel)]="field.key"></p-checkbox>
+            </td>
+            <td>
+                <p-button icon="pi pi-trash" styleClass="p-button-rounded p-button-outlined p-button-danger"
+                    (click)="deleteField(field)"></p-button>
+            </td>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="summary">
+        <div class="flex align-items-center justify-content-between">This control object has {{ fields ?
+            fields.length : 0 }} fields.</div>
+    </ng-template>
+</p-table>
+<p-confirmDialog [style]="{ width: '450px' }"></p-confirmDialog>
